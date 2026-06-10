@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Iconic Global Exporters</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,55 +33,152 @@
     line-height: 1.6;
   }
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%;
+  /* ─── BOOTSTRAP NAVBAR OVERRIDES ─────────────────────────────── */
+
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
     height: 72px;
-    background: rgba(255,255,255,0.96);
+    background: rgba(255,255,255,0.96) !important;
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--border);
   }
 
-  .nav-logo {
+  .navbar .container-fluid {
+    padding: 0 5%;
+    height: 100%;
+  }
+
+  .navbar-brand {
     font-family: 'Playfair Display', serif;
     font-size: 20px;
     font-weight: 700;
-    color: var(--green);
-    text-decoration: none;
+    color: var(--green) !important;
     letter-spacing: 0.01em;
+    padding: 0;
   }
-  .nav-logo span { color: var(--gold); }
+  .navbar-brand span { color: var(--gold); }
 
-  .nav-links {
-    display: flex; gap: 36px; list-style: none;
-  }
-  .nav-links a {
-    text-decoration: none;
-    font-size: 14px;
+  .navbar-nav .nav-link {
+    font-size: 13px;
     font-weight: 500;
-    color: var(--text-mid);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    color: var(--text-mid) !important;
+    padding: 0.35rem 0.9rem !important;
     transition: color 0.2s;
+    position: relative;
   }
-  .nav-links a:hover { color: var(--green); }
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0.9rem;
+    right: 0.9rem;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+    border-radius: 2px;
+  }
+  /* Override Bootstrap's dropdown caret pseudo-element conflict */
+  .navbar-nav .dropdown-toggle::after {
+    position: static;
+    display: inline-block;
+    margin-left: 0.4em;
+    vertical-align: 0.1em;
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+    transform: none;
+    background: none;
+    height: auto;
+    width: auto;
+  }
+  .navbar-nav .nav-link:hover { color: var(--green) !important; }
+  .navbar-nav .nav-link:hover::after { transform: scaleX(1); }
+  .navbar-nav .dropdown-toggle:hover::after { transform: none; }
 
-  .nav-cta {
-    background: var(--green);
+  .nav-cta.nav-link {
+    background: var(--green) !important;
     color: #fff !important;
-    padding: 10px 22px;
+    padding: 9px 22px !important;
     border-radius: 4px;
-    text-transform: uppercase;
     font-size: 13px !important;
     font-weight: 600 !important;
-    letter-spacing: 0.06em !important;
+    letter-spacing: 0.07em !important;
+    margin-left: 8px;
     transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: var(--green-mid) !important; color: #fff !important; }
+  .nav-cta.nav-link::after { display: none !important; }
+  .nav-cta.nav-link:hover { background: var(--green-mid) !important; color: #fff !important; }
 
-  /* HERO */
+  /* Dropdown menu */
+  .dropdown-menu {
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--gold);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+    padding: 8px 0;
+    margin-top: 0 !important;
+    min-width: 200px;
+  }
+  .dropdown-item {
+    font-size: 13.5px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    color: var(--text-mid);
+    padding: 9px 20px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .dropdown-item:hover {
+    background: var(--green-light);
+    color: var(--green);
+  }
+  .dropdown-divider { border-color: var(--border); margin: 4px 0; }
+
+  /* Badge in dropdown */
+  .nav-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 100px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* Hamburger icon */
+  .navbar-toggler {
+    border-color: rgba(30,77,43,0.3);
+    padding: 5px 10px;
+  }
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30%2c77%2c43%2c0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  /* Mobile collapse */
+  @media (max-width: 991px) {
+    .navbar-collapse {
+      background: #fff;
+      margin: 0 -5%;
+      padding: 16px 5% 20px;
+      border-top: 1px solid var(--border);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .navbar-nav .nav-link::after { display: none; }
+    .nav-cta.nav-link { margin-left: 0 !important; margin-top: 8px; display: inline-block; }
+    .dropdown-menu { box-shadow: none; border-top: none; padding-left: 12px; }
+  }
+
+  /* ─── REST OF ORIGINAL STYLES ─────────────────────────────────── */
+
   .hero {
     position: relative;
     height: 100vh;
@@ -125,10 +223,7 @@
     line-height: 1.1;
     margin-bottom: 24px;
   }
-  .hero h1 em {
-    font-style: normal;
-    color: var(--gold);
-  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
 
   .hero p {
     font-size: 17px;
@@ -140,7 +235,7 @@
 
   .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
 
-  .btn-primary {
+  .btn-primary-custom {
     background: var(--gold);
     color: var(--green);
     font-weight: 700;
@@ -152,7 +247,7 @@
     text-decoration: none;
     transition: background 0.2s, color 0.2s;
   }
-  .btn-primary:hover { background: var(--gold-light); }
+  .btn-primary-custom:hover { background: var(--gold-light); color: var(--green); }
 
   .btn-ghost {
     border: 1.5px solid rgba(255,255,255,0.45);
@@ -166,7 +261,7 @@
     text-decoration: none;
     transition: border-color 0.2s, background 0.2s;
   }
-  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); color: #fff; }
 
   .hero-scroll {
     position: absolute; bottom: 36px; left: 50%;
@@ -188,7 +283,6 @@
     100% { transform: scaleY(0); transform-origin: bottom; }
   }
 
-  /* STATS BAR */
   .stats-bar {
     background: var(--cream);
     border-bottom: 1px solid var(--border);
@@ -220,9 +314,7 @@
     color: var(--text-muted);
   }
 
-  /* SECTIONS */
   section { padding: 96px 5%; }
-
   .section-inner { max-width: 1100px; margin: 0 auto; }
 
   .section-label {
@@ -250,7 +342,6 @@
     border-radius: 2px;
   }
 
-  /* ABOUT */
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -258,9 +349,7 @@
     align-items: center;
   }
 
-  .about-img {
-    position: relative;
-  }
+  .about-img { position: relative; }
   .about-img img {
     width: 100%;
     aspect-ratio: 4/5;
@@ -284,9 +373,7 @@
     margin-bottom: 20px;
   }
 
-  .cert-row {
-    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;
-  }
+  .cert-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
   .cert-pill {
     background: var(--green-light);
     color: var(--green);
@@ -298,7 +385,6 @@
     border-radius: 100px;
   }
 
-  /* WHY CHOOSE US */
   .why-section { background: var(--green); }
   .why-section .section-title { color: #fff; }
   .why-section .section-label { color: var(--gold); }
@@ -340,7 +426,6 @@
     line-height: 1.8;
   }
 
-  /* PRODUCTS */
   .products-section { background: var(--cream); }
 
   .products-grid {
@@ -369,9 +454,7 @@
     display: block;
   }
 
-  .product-body {
-    padding: 20px 20px 24px;
-  }
+  .product-body { padding: 20px 20px 24px; }
   .product-body h4 {
     font-family: 'Playfair Display', serif;
     font-size: 19px;
@@ -396,7 +479,6 @@
   .product-link::after { content: '→'; transition: transform 0.2s; }
   .product-link:hover::after { transform: translateX(4px); }
 
-  /* GALLERY */
   .gallery-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -411,9 +493,7 @@
     display: block;
   }
   .gallery-grid .g1 { grid-row: 1 / 3; }
-  .gallery-grid .g4, .gallery-grid .g5 { }
 
-  /* TESTIMONIALS */
   .testimonials-section { background: var(--cream); }
 
   .testimonials-grid {
@@ -460,10 +540,8 @@
   }
   .testimonial-name { font-weight: 600; font-size: 15px; color: var(--text-dark); }
   .testimonial-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-
   .stars { color: var(--gold); font-size: 14px; margin-bottom: 4px; }
 
-  /* CERTIFICATES */
   .certs-grid {
     display: flex; flex-wrap: wrap;
     gap: 28px; align-items: center; justify-content: center;
@@ -483,7 +561,6 @@
     text-align: center;
   }
 
-  /* CONTACT */
   .contact-section { background: var(--green); }
   .contact-section .section-title { color: #fff; }
   .contact-section .section-label { color: var(--gold); }
@@ -497,10 +574,7 @@
     margin-top: 60px;
   }
 
-  .contact-info-item {
-    display: flex; align-items: flex-start; gap: 16px;
-    margin-bottom: 32px;
-  }
+  .contact-info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 32px; }
   .contact-icon {
     width: 44px; height: 44px; flex-shrink: 0;
     background: rgba(255,255,255,0.08);
@@ -515,11 +589,7 @@
   }
   .contact-info-item p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; }
 
-  .contact-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .form-field { display: flex; flex-direction: column; gap: 6px; }
   .form-field.full { grid-column: 1 / 3; }
   .form-field label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
@@ -558,14 +628,8 @@
   }
   .btn-submit:hover { background: var(--gold-light); }
 
-  /* FOOTER */
-  footer {
-    background: #0E2918;
-    padding: 56px 5% 28px;
-  }
-  .footer-inner {
-    max-width: 1100px; margin: 0 auto;
-  }
+  footer { background: #0E2918; padding: 56px 5% 28px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
   .footer-top {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
@@ -577,14 +641,13 @@
   .footer-brand .nav-logo { font-size: 22px; display: block; margin-bottom: 16px; }
   .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 300px; }
   .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-  .footer-col ul { list-style: none; }
+  .footer-col ul { list-style: none; padding: 0; }
   .footer-col li { margin-bottom: 10px; }
   .footer-col a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
   .footer-col a:hover { color: #fff; }
   .footer-bottom {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.35);
+    font-size: 13px; color: rgba(255,255,255,0.35);
   }
   .social-links { display: flex; gap: 16px; }
   .social-links a {
@@ -606,7 +669,6 @@
   }
 
   @media (max-width: 600px) {
-    .nav-links { display: none; }
     .products-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr; }
     .stats-inner { grid-template-columns: 1fr 1fr; }
     .contact-form { grid-template-columns: 1fr; }
@@ -617,16 +679,58 @@
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#">Iconic <span>Global</span> Exporters</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#products">Products</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#certifications">Certifications</a></li>
-    <li><a class="nav-cta" href="#contact">Get a Quote</a></li>
-  </ul>
+<!-- BOOTSTRAP NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Iconic <span>Global</span> Exporters</a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#products"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#products">🧅&nbsp; Fresh Onions</a></li>
+            <li><a class="dropdown-item" href="#products">🌾&nbsp; Premium Rice</a></li>
+            <li><a class="dropdown-item" href="#products">🍌&nbsp; Bananas</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item" href="#products">
+                🪔&nbsp; Brass Items
+                <span class="nav-badge">New</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#testimonials">Testimonials</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#certifications">Certifications</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-cta" href="#contact">Get a Quote</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
@@ -637,7 +741,7 @@
     <h1>From India's Farms<br>to <em>Global Markets</em></h1>
     <p>Premium rice, farm-fresh onions, bananas, and handcrafted brass — sourced with care, shipped with precision, delivered with pride.</p>
     <div class="hero-btns">
-      <a class="btn-primary" href="#products">Explore Products</a>
+      <a class="btn-primary-custom" href="#products">Explore Products</a>
       <a class="btn-ghost" href="#contact">Request a Quote</a>
     </div>
   </div>
@@ -910,7 +1014,7 @@
   <div class="footer-inner">
     <div class="footer-top">
       <div class="footer-brand">
-        <a class="nav-logo" href="#">Iconic <span>Global</span> Exporters</a>
+        <a class="navbar-brand nav-logo" href="#">Iconic <span>Global</span> Exporters</a>
         <p>India's trusted partner for premium agricultural exports and handcrafted brass. Connecting Indian excellence with global markets since our founding.</p>
       </div>
       <div class="footer-col">
@@ -943,5 +1047,6 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
