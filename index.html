@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iconic Global Exporters</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0DFA0;
+    --gold-dark: #8A6A1F;
+    --green: #1E4D2B;
+    --green-mid: #2E7D45;
+    --green-light: #EAF3DE;
+    --cream: #FAF7F0;
+    --text-dark: #1A1A1A;
+    --text-mid: #4A4A4A;
+    --text-muted: #888;
+    --white: #ffffff;
+    --border: rgba(0,0,0,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 72px;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-mid);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: #fff !important;
+    padding: 10px 22px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--green-mid) !important; color: #fff !important; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--green);
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=1800&q=80');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.35;
+  }
+
+  .hero-content {
+    position: relative;
+    padding: 0 10%;
+    max-width: 700px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 5vw, 72px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 40px;
+    max-width: 520px;
+    line-height: 1.75;
+  }
+
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--green);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-ghost {
+    border: 1.5px solid rgba(255,255,255,0.45);
+    color: #fff;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 15px 32px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5);
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .hero-scroll::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: rgba(255,255,255,0.3);
+    animation: scrollLine 2s infinite;
+  }
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+  .stats-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-left: 1px solid var(--border);
+  }
+  .stat-item {
+    padding: 32px 28px;
+    border-right: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--green);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* SECTIONS */
+  section { padding: 96px 5%; }
+
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 3.5vw, 52px);
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.15;
+    margin-bottom: 24px;
+  }
+
+  .divider {
+    width: 56px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 40px;
+    border-radius: 2px;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-img {
+    position: relative;
+  }
+  .about-img img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  .about-img::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 60%; height: 60%;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    z-index: -1;
+  }
+
+  .about-body p {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .cert-row {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px;
+  }
+  .cert-pill {
+    background: var(--green-light);
+    color: var(--green);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border-radius: 100px;
+  }
+
+  /* WHY CHOOSE US */
+  .why-section { background: var(--green); }
+  .why-section .section-title { color: #fff; }
+  .why-section .section-label { color: var(--gold); }
+  .why-section .divider { background: var(--gold); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: rgba(255,255,255,0.07);
+    margin-top: 60px;
+  }
+  .why-card {
+    background: rgba(255,255,255,0.03);
+    padding: 48px 36px;
+    border: 1px solid rgba(255,255,255,0.08);
+    transition: background 0.2s;
+  }
+  .why-card:hover { background: rgba(255,255,255,0.06); }
+
+  .why-icon {
+    width: 56px; height: 56px;
+    background: var(--gold);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    font-size: 28px;
+  }
+
+  .why-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 14px;
+  }
+  .why-card p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.62);
+    line-height: 1.8;
+  }
+
+  /* PRODUCTS */
+  .products-section { background: var(--cream); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .product-card {
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 3/2.5;
+    object-fit: cover;
+    display: block;
+  }
+
+  .product-body {
+    padding: 20px 20px 24px;
+  }
+  .product-body h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+  }
+  .product-body p {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .product-link {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .product-link::after { content: '→'; transition: transform 0.2s; }
+  .product-link:hover::after { transform: translateX(4px); }
+
+  /* GALLERY */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 300px 300px;
+    gap: 12px;
+    margin-top: 60px;
+  }
+  .gallery-grid img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+  }
+  .gallery-grid .g1 { grid-row: 1 / 3; }
+  .gallery-grid .g4, .gallery-grid .g5 { }
+
+  /* TESTIMONIALS */
+  .testimonials-section { background: var(--cream); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 60px;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+  }
+  .testimonial-card::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 96px;
+    color: var(--gold-light);
+    position: absolute;
+    top: 8px; left: 24px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 1;
+    padding-top: 36px;
+  }
+
+  .testimonial-author { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: var(--gold);
+    flex-shrink: 0;
+  }
+  .testimonial-name { font-weight: 600; font-size: 15px; color: var(--text-dark); }
+  .testimonial-role { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 4px; }
+
+  /* CERTIFICATES */
+  .certs-grid {
+    display: flex; flex-wrap: wrap;
+    gap: 28px; align-items: center; justify-content: center;
+    margin-top: 60px;
+  }
+  .cert-badge {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 20px 32px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--green);
+    min-width: 140px;
+    text-align: center;
+  }
+
+  /* CONTACT */
+  .contact-section { background: var(--green); }
+  .contact-section .section-title { color: #fff; }
+  .contact-section .section-label { color: var(--gold); }
+  .contact-section .divider { background: var(--gold); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .contact-info-item {
+    display: flex; align-items: flex-start; gap: 16px;
+    margin-bottom: 32px;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .contact-info-item h4 {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .contact-info-item p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+
+  .contact-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .form-field { display: flex; flex-direction: column; gap: 6px; }
+  .form-field.full { grid-column: 1 / 3; }
+  .form-field label { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.55); }
+  .form-field input,
+  .form-field textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    padding: 13px 16px;
+    font-size: 15px;
+    color: #fff;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .form-field input:focus,
+  .form-field textarea:focus { border-color: var(--gold); }
+  .form-field textarea { resize: vertical; min-height: 120px; }
+
+  .btn-submit {
+    grid-column: 1 / 3;
+    background: var(--gold);
+    color: var(--green);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 3px;
+    padding: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    background: #0E2918;
+    padding: 56px 5% 28px;
+  }
+  .footer-inner {
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 56px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 28px;
+  }
+  .footer-brand .nav-logo { font-size: 22px; display: block; margin-bottom: 16px; }
+  .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 300px; }
+  .footer-col h5 { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { font-size: 14px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+  }
+  .social-links { display: flex; gap: 16px; }
+  .social-links a {
+    width: 34px; height: 34px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none; font-size: 15px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .social-links a:hover { border-color: var(--gold); color: var(--gold); }
+
+  @media (max-width: 900px) {
+    .about-grid, .contact-grid, .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .products-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-grid .g1 { grid-row: 1; grid-column: 1 / 3; aspect-ratio: 16/7; }
+  }
+
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .products-grid, .why-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .contact-form { grid-template-columns: 1fr; }
+    .contact-form .form-field.full, .btn-submit { grid-column: 1; }
+    .hero-btns { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Iconic <span>Global</span> Exporters</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a class="nav-cta" href="#contact">Get a Quote</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">India's trusted export partner</span>
+    <h1>From India's Farms<br>to <em>Global Markets</em></h1>
+    <p>Premium rice, farm-fresh onions, bananas, and handcrafted brass — sourced with care, shipped with precision, delivered with pride.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#products">Explore Products</a>
+      <a class="btn-ghost" href="#contact">Request a Quote</a>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">50+</span>
+      <span class="stat-label">Global Markets</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Product Lines</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">6</span>
+      <span class="stat-label">Certifications</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">100%</span>
+      <span class="stat-label">On-Time Delivery</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Indian spices and export goods on a wooden table">
+      </div>
+      <div class="about-body">
+        <p class="section-label">Who we are</p>
+        <h2 class="section-title">Bridging Indian Excellence with the World</h2>
+        <div class="divider"></div>
+        <p>Iconic Global Exporters is a trusted export house specializing in high-quality rice, farm-fresh onions, bananas, and finely crafted brass items for domestic and international buyers.</p>
+        <p>We source our agricultural goods directly from reliable farmers — ensuring freshness, purity, and consistent grading — while our brass items are crafted by skilled artisans using traditional techniques and premium materials.</p>
+        <p>With rigorous quality control, export-standard packaging, and a strong commitment to ethical trade, we build long-term partnerships rooted in trust and transparency.</p>
+        <div class="cert-row">
+          <span class="cert-pill">APEDA Certified</span>
+          <span class="cert-pill">MSME Registered</span>
+          <span class="cert-pill">FIEO Member</span>
+          <span class="cert-pill">DGFT Licensed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="why-section">
+  <div class="section-inner">
+    <p class="section-label">Why Iconic Global</p>
+    <h2 class="section-title">Built on Quality,<br>Powered by Trust</h2>
+    <div class="divider"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h3>Best Price Guarantee</h3>
+        <p>Competitive, transparent pricing with no hidden charges. We work directly with farmers and artisans to cut the middleman and pass savings to you.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🌿</div>
+        <h3>Finest Quality</h3>
+        <p>Every shipment undergoes multi-stage quality checks. We supply customized quality grades, sizes, and packaging tailored to your market requirements.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🚢</div>
+        <h3>Timely Delivery</h3>
+        <p>We are committed to delivering every shipment within agreed timelines. Our logistics network ensures smooth clearance and on-schedule arrival worldwide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="section-inner">
+    <p class="section-label">Our Range</p>
+    <h2 class="section-title">Products We Export</h2>
+    <div class="divider"></div>
+    <div class="products-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=600&q=80" alt="Fresh red onions">
+        <div class="product-body">
+          <h4>Fresh Onions</h4>
+          <p>Red &amp; white onions sourced from Gujarat and Maharashtra — graded, sorted, and packed to international standards.</p>
+          <a class="product-link" href="#contact">Enquire Now</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?w=600&q=80" alt="Basmati rice grains">
+        <div class="product-body">
+          <h4>Premium Rice</h4>
+          <p>Long-grain basmati and non-basmati varieties, available in multiple grades, polished to perfection for export.</p>
+          <a class="product-link" href="#contact">Enquire Now</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=600&q=80" alt="Fresh bananas">
+        <div class="product-body">
+          <h4>Bananas</h4>
+          <p>Farm-fresh Cavendish and G9 bananas, harvested at optimal ripeness and packed for long-distance export.</p>
+          <a class="product-link" href="#contact">Enquire Now</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Brass handicraft items">
+        <div class="product-body">
+          <h4>Brass Items</h4>
+          <p>Handcrafted decorative and functional brass pieces by master artisans — ideal for home décor, gifting, and retail.</p>
+          <a class="product-link" href="#contact">Enquire Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+  <div class="section-inner">
+    <p class="section-label">Gallery</p>
+    <h2 class="section-title">A Glimpse of Our Goods</h2>
+    <div class="divider"></div>
+    <div class="gallery-grid">
+      <img class="g1" src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?w=800&q=80" alt="Colorful Indian spices and produce market">
+      <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?w=600&q=80" alt="Brass decorative items">
+      <img src="https://images.unsplash.com/photo-1543168256-418811576931?w=600&q=80" alt="Freshly harvested onions in sacks">
+      <img src="https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=600&q=80" alt="Rice grains close up">
+      <img src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?w=600&q=80" alt="Ripe bananas on a wooden surface">
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials">
+  <div class="section-inner">
+    <p class="section-label">What clients say</p>
+    <h2 class="section-title">Trusted by Buyers Worldwide</h2>
+    <div class="divider"></div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Iconic Global consistently delivers excellent-quality rice with precise grading and punctual shipments. A supplier we rely on completely.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RP</div>
+          <div>
+            <div class="testimonial-name">Rajesh P.</div>
+            <div class="testimonial-role">Commodity Trader, Dubai</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">The craftsmanship and finishing on the brass pieces exceeded our expectations. Our retail customers love them. We are repeat buyers.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">NH</div>
+          <div>
+            <div class="testimonial-name">Nehal H.</div>
+            <div class="testimonial-role">Importer, United Kingdom</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Working with Iconic Global has been smooth and fully transparent. Communication is reliable, documentation is clean, and delivery is always on time.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RS</div>
+          <div>
+            <div class="testimonial-name">Rahul S.</div>
+            <div class="testimonial-role">Distributor, Singapore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-inner" style="text-align: center;">
+    <p class="section-label">Our credentials</p>
+    <h2 class="section-title">Certified for Global Trade</h2>
+    <div class="divider" style="margin: 0 auto 40px;"></div>
+    <div class="certs-grid">
+      <div class="cert-badge">APEDA</div>
+      <div class="cert-badge">MSME</div>
+      <div class="cert-badge">GCCI</div>
+      <div class="cert-badge">DGFT</div>
+      <div class="cert-badge">FIEO</div>
+      <div class="cert-badge">GFE</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="section-inner">
+    <p class="section-label">Reach out</p>
+    <h2 class="section-title">Let's Start a Conversation</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <h4>Address</h4>
+            <p>244901, India</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <h4>Phone</h4>
+            <p>+91 95575 38311</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <h4>Email</h4>
+            <p>Mohdsadaan461@gmail.com</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-icon">💬</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p>+91 95575 38311</p>
+          </div>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="return false;">
+        <div class="form-field">
+          <label>First Name</label>
+          <input type="text" placeholder="Ahmed">
+        </div>
+        <div class="form-field">
+          <label>Last Name</label>
+          <input type="text" placeholder="Al-Rashid">
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+        <div class="form-field">
+          <label>Phone</label>
+          <input type="tel" placeholder="+971 50 000 0000">
+        </div>
+        <div class="form-field full">
+          <label>Product of Interest</label>
+          <input type="text" placeholder="e.g. Basmati Rice, Onions, Brass Items">
+        </div>
+        <div class="form-field full">
+          <label>Message</label>
+          <textarea placeholder="Tell us about your requirements — quantity, destination, and any specific grade or packaging preferences."></textarea>
+        </div>
+        <button class="btn-submit" type="submit">Send Enquiry →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a class="nav-logo" href="#">Iconic <span>Global</span> Exporters</a>
+        <p>India's trusted partner for premium agricultural exports and handcrafted brass. Connecting Indian excellence with global markets since our founding.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#certifications">Certifications</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="#">Terms &amp; Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Iconic Global Exporters. All rights reserved.</span>
+      <div class="social-links">
+        <a href="https://www.facebook.com/profile.php?id=61585918389492" title="Facebook">f</a>
+        <a href="https://x.com/IconicGlobal20" title="X / Twitter">𝕏</a>
+        <a href="https://www.instagram.com/iconicglobalexporters" title="Instagram">in</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
